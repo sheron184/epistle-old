@@ -18,10 +18,57 @@
 .hideme{
   display: none;
 }
-#projectModule{
-  
-}
 
+.module{
+  width: 50%;
+  padding: 30px;
+  border-radius: 20px;
+  background: #fff;
+}
+.display{
+  display: flex;
+  justify-content: center;
+}
+.closeme{
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  color: red;
+}
+.search-input{
+  width: 70%;
+  padding: 7px 20px;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  border: 2px solid #009688;
+    background: #b8fff847;
+}
+.search-bar-form{
+  width: 70%;
+}
+.sbtn{
+  background: #009688;
+  color: #fff;
+  border: none;
+  width: 62px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+  font-size: 20px;
+  font-family: Ubuntu;
+}
+.sbtn:hover{
+  background-color: #06564e;
+}
+.search-input::placeholder{
+  font-family: Ubuntu;
+  color: green;
+}
+.search-input:focus{
+  border: 2px solid limegreen;
+  outline: 1px solid limegreen;
+}
 
 
 

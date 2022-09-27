@@ -34,5 +34,7 @@
                 </div>
             </div>
         </div>
+        <x-home-content />
+        <x-footer />
     </body>
 </html>
