@@ -1,0 +1,465 @@
+.outer-wrapper{
+    height: 100vh;
+    
+    background-size: cover;
+    background-position: center;
+}
+.welcome-container{
+    display: flex;
+    border-radius: 30px;
+}
+.content-side{
+    width: 37%;
+}
+.content-side{
+    display: flex;
+    justify-content: center;
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+    background-color: transparent;
+}
+.slider-side{
+    width: 63%;
+    height: 100%;
+    z-index: 99;
+    background-color: transparent;
+}
+.slider-content{
+    width: 67%;
+    background-color: #111111b8;
+}
+.content-side div{
+    color: aliceblue;
+}
+.epistle{
+    -webkit-text-fill-color: transparent;
+    background: linear-gradient(67.18deg, #ff397d 20.68%, #00bcd4 50.61%, #00bcd4 42.62%, #ffc107 64.59%, #cddc39 60.06%, rgb(233 175 97) 67.61%, rgb(255, 92, 0) 86.82%);
+    font-family: Londrina Shadow;
+    background-clip:content-box;
+    -webkit-background-clip: text;
+    font-size: 120px;
+}
+.des-h{
+    font-family:Ubuntu ;
+}
+.h5{
+    font-size:35px;
+    color: #6c757d;
+}
+.header{
+    color: #ffc107;
+    font-size: 38px;
+    font-family: Ubuntu;  
+}
+.hide{
+    display: none !important;
+}
+.widget{
+    display: flex;
+    font-family: Ubuntu;
+    align-items: center;
+    height: 80px;
+    padding: 20px 25px;
+    color: whitesmoke;
+    width: 75%;
+    background-color: #1d1c1ceb;
+    border-radius: 7px;
+    border-left: 2px solid #ff5722;
+}
+.widget h5{
+    font-weight: lighter;
+    font-size:18px;
+}
+.widget-btn-a{
+    z-index:99;
+    font-size:34px !important;
+}
+.btn-join:hover{
+    text-decoration: none !important;
+}
+.widget-img{
+    height: 50px;
+    width: 50px;
+    right: 5px;
+}
+.letsgo{
+    left: 5px;
+    margin-top: 35px;
+}
+.btn-lesgo{
+    padding: 10px 40px;
+    border-radius: 30px;
+    color: #00bcd4;
+    font-size: 27px;
+    font-family: Ubuntu;
+    font-weight: bold;
+    border: 2px solid #00bcd4;
+}
+.btn-lesgo:hover{
+    background-image: none;
+    border: #fff 2px solid;
+    text-decoration: none;
+    color: #fff;
+}
+.vanta-wrapper{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 100vh;
+}
+.btn-widget{
+    border-left: none;
+    background-image: url(../imgs/bgs/btn1.png);
+    background-size: cover;
+    background-position: center;
+}
+.btn-widget a{
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: #111;
+    font-family: Ubuntu;
+    color: #fff;
+}
+@media only screen and (max-width: 992px){
+    .widgets{
+        flex-direction: column;
+        margin-top: 30px;
+        margin-left: 0px;
+    }
+    .letsgo{
+        position: static;
+        margin-top: 20px;
+        padding-top: 40px;
+    }
+    .content-side{
+        width: 100%;
+    }
+    .content-side div{
+        padding-right: 0px !important;
+    }
+}
+
+form{
+    color: #fff !important;
+    font-family: Karla;
+}
+.h-regorlog{
+    font-family: Ubuntu;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.abcRioButtonContents span{
+    font-size: 20px !important;
+    color:#111;
+    font-weight: bold;
+}
+
+.slider-1{
+    background-image: url(../imgs/slider/slider1.jpg);
+    background-size:cover;
+    background-position: center;
+}
+.slider-2{
+    background-image: url(../imgs/slider/slider2.jpg);
+    background-size:cover;
+    background-position: center;
+}
+.slider-3{
+    background-image: url(../imgs/slider/slider3.jpg);
+    background-size:cover;
+    background-position: center;
+}
+.slider-4{
+    background-image: url(../imgs/slider/slider4.jpg);
+    background-size:cover;
+    background-position: center;
+}
+.slider-5{
+    background-image: url(../imgs/slider/slider5.jpg);
+    background-size:cover;
+    background-position: center;
+}
+
+
+/* General button style */
+.btn {
+    border: none;
+    font-family: 'Lato';
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    cursor: pointer;
+    padding: 25px 80px;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    outline: none;
+    position: relative;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  
+  .btn:after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+  }
+  
+  /* Pseudo elements for icons */
+  .btn:before {
+    font-family: 'FontAwesome';
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .icon-info:before {
+    content: "\f023";
+  }
+  
+  /* Icon separator */
+  .btn-sep {
+    font-family: Ubuntu;
+    padding: 12px 19px 12px 70px;
+  }
+  
+  .btn-sep:before {
+    background: rgba(0,0,0,0.15);
+  }
+  
+  /* Button 1 */
+  .btn-1 {
+    top: 20px;
+    right: 0px;
+    z-index: 99;
+    background: #3f51b5;
+    color: #fff;
+    border-radius: 0px;
+  }
+  
+  .btn-1:hover {
+    background: #2980b9;
+  }
+  
+  .btn-1:active {
+    background: #2980b9;
+    top: 2px;
+  }
+  
+  .btn-1:before {
+    position: absolute;
+    height: 100%;
+    left: 0;
+    top: 0;
+    line-height: 3;
+    font-size: 140%;
+    width: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.hideme{
+    display: none;
+}
+.closeme{
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 32px;
+}
+.dev{
+    color: #b4d400;
+}
+.it{
+    color: #13f5c1;
+}
+.slider-text, .slider-text span{
+    font-size: 60px;
+    line-height: 1.2;
+    z-index: 9999;
+    font-family: Rubik Dirt;
+}
+
+
+/* CSS */
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  font-family: Ubuntu !important;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+.button-85:hover{
+    color: #fff;
+}
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+.bg-colored{
+    background: #18161e;
+    color: whitesmoke;
+}
+
+
+
+
+
+
+
+/* ============================================= Reg.css ====================================================== */
+
+*{
+    font-family: Karla;
+}
+.w-40{
+    width: 40%;
+}
+.w-60{
+    width: 100%;
+}
+.hide{
+    display: none;
+}
+.reg-img{
+    background-image: url(../imgs/bgs/joinus.jpg);
+    background-size: cover;
+    background-position: center;
+    border-right: 5px solid #e91e63;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.bl{
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+form{
+    display: flex;
+    justify-content: center;
+}
+.f-wrapper{
+    width: 90%;
+}
+.btn-reg{
+    color: #fff;
+    background: #2196f3;
+    border: none;
+    border-radius: 30px;
+    padding: 7px 25px;
+}
+.gotologin,.gotoreg{
+    border: none;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: transparent;
+    color: #fff;
+}
+.gotologin:hover{
+    background: #fff;
+    color: #111;
+}
+.font-bold{
+    font-weight: bold;
+}
+.form-control-edited{
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+    background: transparent;
+    display: block;
+    width: 100%;
+    padding: 8px 18px 5px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #3eeedd;
+}
+.form-control-edited:focus{
+    outline: 0 !important;
+}
+@media only screen and (max-width: 768px){
+    .reg-img{
+        display: none;
+    }
+    #regFormContainer,#loginFormcontainer{
+        width: 100% !important;
+    }
+    .f-wrapper{
+        width: 100%;
+    }
+}
+
+/* ========= Reg.css ENDS ========== */
+@media only screen and (max-width: 480px){
+    .epistle{
+        font-size: 80px;
+    }
+}

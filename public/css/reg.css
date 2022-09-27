@@ -1,0 +1,68 @@
+*{
+    font-family: Karla;
+}
+.w-40{
+    width: 40%;
+}
+.w-60{
+    width: 60%;
+}
+.hide{
+    display: none;
+}
+.reg-img{
+    background-image: url(../imgs/bgs/joinus.jpg);
+    background-size: cover;
+    background-position: center;
+    border-right: 5px solid #e91e63;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+.bl{
+    border-left: 5px solid #e91e63;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+form{
+    display: flex;
+    justify-content: center;
+}
+.f-wrapper{
+    width: 70%;
+}
+.btn-reg{
+    color: #fff;
+    background: #ef8985;
+    border: none;
+    border-radius: 30px;
+    padding: 7px 25px;
+}
+.gotologin,.gotoreg{
+    border: none;
+    padding: 5px 15px;
+    border-radius: 30px;
+    background: #90b7ca;
+    color: #fff;
+}
+.font-bold{
+    font-weight: bold;
+}
+.form-control{
+    border: none;
+    border-bottom: 1px solid;
+    border-radius: 0px;
+}
+.form-control:focus{
+    border: none !important;
+}
+@media only screen and (max-width: 768px){
+    .reg-img{
+        display: none;
+    }
+    #regFormContainer,#loginFormcontainer{
+        width: 100% !important;
+    }
+    .f-wrapper{
+        width: 100%;
+    }
+}
