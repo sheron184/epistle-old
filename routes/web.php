@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\BookletController;
 use Illuminate\Support\Facades\Route; 
 
 /*
@@ -31,6 +32,10 @@ Route::get('token/{token}',[MainController::class,'passwordResetTokenValidate'])
 Route::post('pswdreset',[MainController::class,'reset_pswd']);
 Route::post('gauth',[MainController::class,'gauth']);
 Route::get('profile',[MainController::class,'profile']);
+
+//booklet
+Route::post('add_booklet',[BookletController::class,'index']);
+
 //Admin
 Route::get('admin',[AdminController::class,'index']);
 Route::post('add_subject',[AdminController::class,'add_subject']);

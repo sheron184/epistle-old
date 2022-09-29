@@ -13,7 +13,9 @@
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
-
+        <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Reem+Kufi+Ink&display=swap" rel="stylesheet">
+        
         <!-- JQUERY -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -25,6 +27,7 @@
         
         <!-- MYCSS -->
         <link rel="stylesheet" href="{{url('/css/home.css')}}?{{uniqid()}}">
+        <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
     </head>
     <body>
         <div class="container-fluid">
@@ -34,7 +37,7 @@
                 </div>
             </div>
         </div>
-        <x-home-content />
+        <x-home-content :booklets="$booklets" />
         <x-footer />
     </body>
 </html>

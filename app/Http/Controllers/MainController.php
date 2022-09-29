@@ -53,7 +53,8 @@ class MainController extends Controller{
     public function home(Request $req){
         //var_dump($req->session()->get("logged_in"));die();
         if($req->session()->get("logged_in")){
-            return view('user/home');
+            $booklets = DB::select("select * from booklets");
+            return view('user/home',['booklets'=>$booklets]);
         }else{
             return redirect('check');
         }

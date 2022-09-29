@@ -1,12 +1,12 @@
 <div class="header-wrapper d-flex shadow-sm">
-    <div class="logo-box p-3">
-        <h3><a href="/">EPISTLE</a></h3>
+    <div class="logo-box p-3 d-flex align-items-center">
+        <h3 class="mb-0"><a href="/">EPISTLE</a></h3>
     </div>
     <div class="header-btns flex-grow-1 d-flex justify-content-end">
         <div class="p-3">
-            <button class="button-61 mr-3 prompt" target-module="teamModule"><i class="fa-solid fa-plus mr-2"></i> Team</button>
-            <button class="button-61 mr-3 prompt" target-module="projectModule"><i class="fa-solid fa-plus mr-2"></i> Project</button>
-            <button class="button-61 mr-3 prompt" target-module="bookletModule"><i class="fa-solid fa-plus mr-2"></i> Booklet</button>
+            <button class="button-35 mr-3 prompt" target-module="teamModule"><i class="fa-solid fa-plus mr-2"></i> Team</button>
+            <button class="button-35 mr-3 prompt" target-module="projectModule"><i class="fa-solid fa-plus mr-2"></i> Project</button>
+            <button class="button-35 mr-3 prompt" target-module="bookletModule"><i class="fa-solid fa-plus mr-2"></i> Booklet</button>
             <button class="mr-3 button-29"><i class="fa-solid fa-hashtag"></i> Explorer</button>
             <a href="profile" class="button-71"><i class="fa-solid fa-user"></i></a>
         </div>
@@ -47,7 +47,7 @@
                     <input type="text" class="form-control" name="proj_name">
                 </div>
                 <div class="form-group">
-                    <input type="text" class="button-61" value="Create">
+                    <input type="submit" class="button-47" value="Create">
                 </div>
             </form>
         </div>
@@ -56,24 +56,25 @@
     <div id="bookletModule" class="hideme animate__animated">
         <div class="module mt-4 shadow border position-relative">
             <a class="closeme"><i class="fa-solid fa-xmark"></i></a>
-            <form action="add_module" method="post">
+            <form id="bookletForm" action="add_booklet" method="post">
+                @csrf
                 <div class="form-group">
                     <h5>Create Booklet</h5>
                 </div>
                 <div class="form-group">
                     <label for="proj_name">Booklet topic</label>
-                    <input type="text" class="form-control" name="proj_name">
+                    <input type="text" class="form-control" name="topic">
                 </div>
                 <div class="form-group">
                     <label for="proj_name">Programming language</label>
-                    <input type="text" class="form-control" name="proj_name">
+                    <input type="text" class="form-control" name="language">
                 </div>
                 <div class="form-group">
-                    <label for="proj_name">Description</label>
-                    <textarea name="des" id="" cols="30" rows="10" class="form-control"></textarea>
+                    <label for="proj_name">Keywords (Seperate each keyword with a comma)</label>
+                    <textarea name="keywords" cols="30" rows="5" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="button-61" value="Create">
+                    <input type="submit" class="button-47" value="Create">
                 </div>
             </form>
         </div>
@@ -99,7 +100,7 @@
                     <textarea name="des" id="" cols="30" rows="10" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="button-61" value="Create">
+                    <input type="submit" class="button-47" value="Create">
                 </div>
             </form>
         </div>
