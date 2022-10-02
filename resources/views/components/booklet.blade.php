@@ -3,6 +3,6 @@
         <div class="book-header">
             <h5 class="topic">{{$book->topic}}</h5>
         </div>
-        <a href="#" class="book-view-btn position-absolute">View</a>
+        <a href="booklet/{{$book->uniq_id}}" class="book-view-btn position-absolute">View</a>
     </div>
 </div> 

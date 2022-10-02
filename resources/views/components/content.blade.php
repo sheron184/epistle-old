@@ -15,7 +15,7 @@
 </div>
 <div class="container-fluid joinus">
     <div class="row">
-        <div class="col-12">
+    <div class="col-12">
             <div class="d-flex justify-content-center">
                 <div class="p-4">
                     <h2>Learn Harder But, In a Smart Way!</h2>

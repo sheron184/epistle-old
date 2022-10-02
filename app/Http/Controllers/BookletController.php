@@ -11,6 +11,10 @@ class BookletController extends Controller{
     if($insert){
         return redirect('home');
     }
-
+  }
+  public function view($id){
+    $booklet = DB::select("select * from booklets where uniq_id=?",[$id]);
+    //var_dump($booklet);die();
+    return view('user/booklet_view',['booklet'=>$booklet[0]]);
   }
 }

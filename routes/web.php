@@ -35,6 +35,7 @@ Route::get('profile',[MainController::class,'profile']);
 
 //booklet
 Route::post('add_booklet',[BookletController::class,'index']);
+Route::get('booklet/{id}',[BookletController::class,'view']);
 
 //Admin
 Route::get('admin',[AdminController::class,'index']);
