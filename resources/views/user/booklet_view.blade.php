@@ -38,6 +38,15 @@
                     <div id="dropbox" class="canvas"></div>
                 </div>
             </div>
+            <div class="col-12">
+                <div>
+                    <form action="/pdf" method="post" class="p-2">
+                        @csrf
+                        <textarea id="html_content" type="text" name="html" class="form-control"></textarea>
+                        <input type="submit" value="PDF" class="btn btn-sm btn-danger">
+                      </form>
+                </div>
+            </div>
         </div>
     </div>
 </body>

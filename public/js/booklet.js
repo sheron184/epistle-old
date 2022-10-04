@@ -18,7 +18,7 @@ function dragMoveListener (event) {
   target.setAttribute('data-x', x)
   target.setAttribute('data-y', y)
 }
-$(".component").click(function(){
+$(".element").click(function(){
   var node = `<div style='width: 100px;
   height: 100px;
   border: 2px solid;top:0px;left:0px;' class='component rectangle dropped'></div>`;

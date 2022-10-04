@@ -1,11 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-//require '../pdfdom/autoload.php';
+require '../pdfdom/autoload.php';
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Dompdf\Dompdf;
+//use Dompdf\Dompdf;
 
 class BookletController extends Controller
 {
@@ -31,11 +31,9 @@ class BookletController extends Controller
         //var_dump($booklet);die();
         return view('user/booklet_view', ['booklet' => $booklet[0]]);
     }
-    public function pdf(Request $req){
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($req->html);
-        $dompdf->setPaper('A4', 'landscape');
-        $dompdf->render();
-        $dompdf->stream();
+    public function pdf(Request $req)
+    {
+        var_dump('asdas');
+        die();
     }
 }

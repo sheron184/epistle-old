@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "dompdf/dompdf": "^2.0",
         "fruitcake/laravel-cors": "^2.0",
         "google/apiclient": "2.12.1",
         "guzzlehttp/guzzle": "^7.0.1",
@@ -28,7 +29,13 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        }, 
+        "classmap": [
+            
+        ],
+        "files": [
+           
+        ]
     },
     "autoload-dev": {
         "psr-4": {
