@@ -7,10 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Dompdf\Dompdf;
 
-class BookletController extends Controller
-{
-    public function index(Request $req)
-    {
+class BookletController extends Controller{
+    public function index(Request $req){
         $insert = DB::insert(
             'insert into booklets(uniq_id,user_id,topic,language,keywords) values(?,?,?,?,?)',
             [
@@ -25,8 +23,7 @@ class BookletController extends Controller
             return redirect('home');
         }
     }
-    public function view($id)
-    {
+    public function view($id){
         $booklet = DB::select('select * from booklets where uniq_id=?', [$id]);
         //var_dump($booklet);die();
         return view('user/booklet_view', ['booklet' => $booklet[0]]);
@@ -37,5 +34,13 @@ class BookletController extends Controller
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $dompdf->stream();
+    }
+    public function savebook(Request $req){
+        //$saved = DB::update('update booklets set content=? where uniq_id=?',[$req->html,$req->id]);
+        $saved = DB::table('booklets')
+            ->where('uniq_id', $req->input('id'))
+            ->update(['content' => $req->input('html')]);
+            //var_dump($req->all());
+        echo $saved;
     }
 }

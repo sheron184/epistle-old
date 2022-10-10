@@ -37,6 +37,7 @@
         <link rel="stylesheet" href="{{url('/css/welcomeContent.css')}}?{{uniqid()}}">
     </head>
     <body>
+        <div id="loader" class="h-100" style="position: fixed;background:#111;">loading</div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12 pl-0 pr-0">
@@ -323,5 +324,6 @@
             $(".userareaModule").addClass("hideme").removeClass("animate__slideInRight").addClass("animate__slideOutLeft");
             $(".splide_slider").removeClass("animate__slideOutLeft").addClass("animate__slideInRight").removeClass("hideme");
         })
+        $("#loader").hide();
 </script>
 </html>

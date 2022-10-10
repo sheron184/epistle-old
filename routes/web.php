@@ -43,6 +43,8 @@ Route::get('profile', [MainController::class, 'profile']);
 Route::post('add_booklet', [BookletController::class, 'index']);
 Route::get('booklet/{id}', [BookletController::class, 'view']);
 Route::post('pdf', [BookletController::class, 'pdf']);
+Route::post('savebook',[BookletController::class,'savebook']);
+
 //Admin
 Route::get('admin', [AdminController::class, 'index']);
 Route::post('add_subject', [AdminController::class, 'add_subject']);

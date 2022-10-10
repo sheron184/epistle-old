@@ -18,37 +18,56 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+
+    <!-- FONTS -->
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
+
     <!-- <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <!-- MYCSS -->
     <link rel="stylesheet" href="{{url('/css/booklet_view.css')}}?{{uniqid()}}">
-    
 </head>
 <body>
+    <input type="hidden" id="bookletHtml" value="{{$booklet->content}}">
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-12 pl-0">
+            <div class="col-12 bg-green text-white">
+                <div class="top-bar d-flex align-items-center">
+                    <h4 class="book-name mb-0">{{$booklet->topic}}</h4>
+                    <div class="ml-3">
+                        <a href="#" bookid="{{$booklet->uniq_id}}" id="savebook">save</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-12 pl-0 border pt-2">
                 <div class="elements-bar p-2 h-100vh">
+                    <div class="bar-heading mb-3">
+                        <h4 align="center">Elements</h4>
+                    </div>
                     <x-elements />
                 </div>
             </div>
-            <div class="col-xl-10 col-lg-8 col-md-8 col-sm-12 col-12">
-                <div class="canvas-wrapper p-2 border d-flex justify-content-center">
+            <div class="col-xl-10 col-lg-8 col-md-8 col-sm-12 col-12 pt-3">
+                <div id="dropboxContainer" class="canvas-wrapper p-2 d-flex justify-content-center">
                     <div id="dropbox" class="canvas"></div>
                 </div>
             </div>
             <div class="col-12">
-                <div>
-                    <form action="/pdf" method="post" class="p-2">
+                <div class="pt-3 pb-3">
+                    <form action="/pdf" method="post" class="p-2 d-flex justify-content-end">
                         @csrf
-                        <textarea id="html_content" type="text" name="html" class="form-control"></textarea>
+                        <input id="html_content" type="hidden" name="html" class="form-control">
+                        <input type="submit" value="IMG" class="btn btn-sm btn-dark mr-3">
+                        <input type="submit" value="DOCX" class="btn btn-sm btn-info mr-3">
                         <input type="submit" value="PDF" class="btn btn-sm btn-danger">
                       </form>
                 </div>
             </div>
+            <x-footer />
         </div>
     </div>
 </body>
+<script src="{{url('/js/interact.js')}}?{{uniqid()}}"></script>
 <script src="{{url('/js/booklet.js')}}?{{uniqid()}}"></script>
 </html>

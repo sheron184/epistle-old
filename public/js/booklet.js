@@ -1,100 +1,75 @@
+//variables
 position = { x: 0, y: 0 }
 const dropbox = document.getElementById("dropbox");
-function dragMoveListener (event) {
-  var target = event.target
-  // keep the dragged position in the data-x/data-y attributes
-  var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-  var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
+let selected_textnode_id = "";
+let saveBtn = document.getElementById("savebook");
 
-  // translate the element
-  target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
+//Update the HTML content
+function updateHtml(){
+  var domParser = new DOMParser();
+  var htmlContent = domParser.parseFromString(dropbox.innerHTML,'text/html');
+  var divs = $(htmlContent).find("div");
 
-  //update the position of the element
-  //event.target.style.top = y+"px" 
-  //event.target.style.left = y+"px"
-  $("#html_content").val(dropbox.outerHTML);
-  
-  // update the posiion attributes
-  target.setAttribute('data-x', x)
-  target.setAttribute('data-y', y)
+  $(divs).each(function(){
+    $(this).css("position","static");
+  })
+  $("#html_content").val(htmlContent.documentElement.innerHTML);
 }
-$(".element").click(function(){
-  var node = `<div style='width: 100px;
-  height: 100px;
-  border: 2px solid;top:0px;left:0px;' class='component rectangle dropped'></div>`;
+//load existing booklet
+var html = $("#bookletHtml").val();
+$(html).appendTo("#dropbox");
+updateHtml();
+
+//save booklet
+saveBtn.addEventListener('click',(event)=>{
+  var html = $("#html_content").val();
+  var id = $(event.target).attr("bookid");
+  token = document.querySelector('meta[name="csrf-token"]').content;
+  const xhttp = new XMLHttpRequest();
+
+  xhttp.open("POST","http://localhost:8000/savebook",true);
+  xhttp.setRequestHeader("X-CSRF-TOKEN", token); 
+  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+  xhttp.onload = ()=>{
+    if(xhttp.response){
+      alert("Saved successfully!");
+    }else{
+      alert("Error occured!");
+    }
+  }
+  
+  xhttp.send(`id=${id}&html=${html}`);
+})
+
+//my events
+$("#rectangle").click(function(){
+  var node = `<div style='width:100px;height:100px;border:1px solid;' class='component textnode dropped'></div>`;
   $(node).appendTo(dropbox);
 })
 $(".dropped").click(function(){
   position = {x:0,y:0}
 })
-interact('.component').draggable({
-    // enable inertial throwing
-    inertia: true,
-    // keep the element within the area of it's parent
-    modifiers: [
-      interact.modifiers.restrictRect({
-        restriction: 'parent',
-        endOnly: true
-      })
-    ],
-    // enable autoScroll
-    autoScroll: true,
-
-    listeners: {
-      // call this function on every dragmove event
-      move: dragMoveListener,
-
-      // call this function on every dragend event
-      end (event) {
-        var textEl = event.target.querySelector('p')
-
-        textEl && (textEl.textContent =
-          'moved a distance of ' +
-          (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                     Math.pow(event.pageY - event.y0, 2) | 0))
-            .toFixed(2) + 'px')
-      }
-    }
-  })
-interact('.component')
-  .resizable({
-    edges: { top: true, left: true, bottom: true, right: true },
-    listeners: {
-      move: function (event) {
-        var target = event.target
-        var x = (parseFloat(target.getAttribute('data-x')) || 0)
-        var y = (parseFloat(target.getAttribute('data-y')) || 0)
-
-        // update the element's style
-        target.style.width = event.rect.width + 'px'
-        target.style.height = event.rect.height + 'px'
-        $("#html_content").val(dropbox.outerHTML);
-        // translate when resizing from top or left edges
-        x += event.deltaRect.left
-        y += event.deltaRect.top
-
-        //target.style.transform = 'translate(' + x + 'px,' + y + 'px)'
-
-        target.setAttribute('data-x', x)
-        target.setAttribute('data-y', y)
-        //target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height)
-      }
-    }
-
-  })
-
-interact('.rectangle').dropzone({
-  accept:'.component',
-  ondragenter:function(event){
-    //////position.x =0;
-    //position.y=0;
-  },
-  ondrop:function(event){
-    //event.relatedTarget.classList.add('dropped');
-    //$(event.relatedTarget).appendTo(event.target);
-    //event.relatedTarget.classList.remove('draggable');
-    //console.log(event.target.dx);
-    console.log('dropped');
-  }
-
+$("#text").click(function(){
+  var id = `${Math.floor(Math.random() * 9999) + 1000}`;
+  var txt_node = `<div id='${id}' class='textnode component dropped'><div><span class='placeholder'>Start typing..</span><span class='textval' style='line-break:anywhere;'></span></div></div>`;
+  $(txt_node).appendTo(dropbox);
 })
+$(document).on("click",".textnode",function(){
+  $(this).find("div").find(".placeholder").empty();
+  selected_textnode_id = $(this).attr("id");
+})
+$(document).keydown(function(e){
+  if(selected_textnode_id != ""){
+    var span = $(`#${selected_textnode_id}`).find("div").find(".textval");
+    var spanText = $(span).text();
+    //if the backspace key was pressed
+    if(e.keyCode == 8 || e.charCode == 8){
+      $(span).text(spanText.substring(0,spanText.length-1));
+    }else{
+      $(span).text(spanText+e.key);
+    }
+  }
+  updateHtml();
+})
+
+
