@@ -3,6 +3,9 @@
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookletController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TeamController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,10 +19,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//public
+//Public
 Route::get('/', [MainController::class, 'index']);
 
-//user
+//User
 Route::get('check', [MainController::class, 'check_credentails']);
 Route::get('home', [MainController::class, 'home']);
 Route::get('logout', [MainController::class, 'logout']);
@@ -36,14 +39,22 @@ Route::get('token/{token}', [
     'passwordResetTokenValidate',
 ]);
 Route::post('pswdreset', [MainController::class, 'reset_pswd']);
-Route::post('gauth', [MainController::class, 'gauth']);
+Route::get('gauth', [MainController::class, 'gauth']);
 Route::get('profile', [MainController::class, 'profile']);
 
-//booklet
+//Booklet
 Route::post('add_booklet', [BookletController::class, 'index']);
-Route::get('booklet/{id}', [BookletController::class, 'view']);
+Route::get('bookview/{id}', [BookletController::class, 'bookview']);
 Route::post('pdf', [BookletController::class, 'pdf']);
 Route::post('savebook',[BookletController::class,'savebook']);
+Route::get('editview/{id}',[BookletController::class,'editview'])->middleware('bookowner');
+
+//Project
+Route::get('editproject',[ProjectController::class,'index']);
+Route::get('viewproject',[ProjectController::class,'viewproject']);
+
+//Team
+Route::get('teamview',[TeamController::class,'teamview']);
 
 //Admin
 Route::get('admin', [AdminController::class, 'index']);

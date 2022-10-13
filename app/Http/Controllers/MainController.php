@@ -3,11 +3,36 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-//$passwordResetEmail="";
+use Google_Client; 
+use Google_Service_Oauth2;
+
 class MainController extends Controller{
-    
     public function index(){
-        return view('main');
+        //client info
+        $clientID = env('GOOGLE_CLIENT_ID');
+        $clientSecret = env('GOOGLE_CLIENT_SECRET');
+        $redirectUri = env('GOOGLE_REDIRECT');
+
+        //new client object
+        $client = new Google_Client();
+        $client->setClientId($clientID);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUri);
+        $client->addScope("email");
+        $client->addScope("profile");
+
+        //google login url
+        $loginUrl = $client->createAuthUrl();
+
+        return view('main',["google_url" => $loginUrl]);
+    }
+    public function custom_login($user,$request){
+        //set session data
+        $request->session()->put('unid',$user->uniq_id);
+        $request->session()->put('fname',$user->first_name);
+        $request->session()->put('lname',$user->last_name);
+        $request->session()->put('email',$user->email);
+        $request->session()->put('logged_in',true);
     }
     public function check_credentails(Request $request){
         if($request->session()->get('logged_in')){
@@ -17,13 +42,17 @@ class MainController extends Controller{
         }
     }
     public function profile(Request $req){
-        return view('user/profile');
+        $user = DB::table('geeks')->where("uniq_id","=",$req->session()->get('unid'))->get();
+        $user_books = DB::table('booklets')->where("user_id","=",$req->session()->get('unid'))->get();
+        return view('user/profile',["user" => $user[0],"booklets" => $user_books]);
     }
     public function signup(Request $request){
         $password = hash('md5',$request->password);
         $insert = DB::insert("insert into geeks (uniq_id,first_name,last_name,email,password) values(?,?,?,?,?)",[uniqid(),$request->first_name,$request->last_name,$request->email,$password]);
         if($insert){
-            return redirect('check');
+            return redirect('/')->with('success','Please login to continue!');
+        }else{
+            return redirect('/')->with('error','Error occured!');
         }
     }
     public function login(Request $request){
@@ -33,17 +62,11 @@ class MainController extends Controller{
         if($user_exists){
             $user = DB::table('geeks')
             ->where('email','=',$request->email)
-            ->where('password','=',hash('md5',$request->password))->get();
-            //set session data
-            $request->session()->put('unid',$user[0]->uniq_id);
-            $request->session()->put('fname',$user[0]->first_name);
-            $request->session()->put('lname',$user[0]->last_name);
-            $request->session()->put('email',$user[0]->email);
-            $request->session()->put('logged_in',true);
-
+            ->where('password','=',hash('md5',$request->password))->get(); 
+            $this->custom_login($user[0],$request);
             return redirect('home');
         }else{
-            return redirect('check');
+            return redirect('/')->with('error','Invalid credentials!');
         }
         //var_dump($user[0]->email);die();
     }
@@ -101,23 +124,47 @@ class MainController extends Controller{
         return redirect('/');
     }
     public function gauth(Request $request){
-        $email_exists = DB::table('geeks')->where("email","=",$request->gmail)->exists();
+        //client info
+        $clientID = env('GOOGLE_CLIENT_ID');
+        $clientSecret = env('GOOGLE_CLIENT_SECRET');
+        $redirectUri = env('GOOGLE_REDIRECT');
+
+        //new client object
+        $client = new Google_Client();
+        $client->setClientId($clientID);
+        $client->setClientSecret($clientSecret);
+        $client->setRedirectUri($redirectUri);
+        $client->addScope("email");
+        $client->addScope("profile");
+
+        if(isset($_GET['code'])){
+            $code = $_GET['code'];
+            $accessToken = $client->fetchAccessTokenWithAuthCode($code);
+            $client->setAccessToken($accessToken['access_token']);
+
+            //get user info
+            $google_oauth = new Google_Service_Oauth2($client);
+            $google_account_info = $google_oauth->userinfo->get();
+            $email =  $google_account_info->email;
+            //$name =  $google_account_info->name;
+
+            $first_name = $google_account_info->given_name;
+            $last_name = $google_account_info->family_name;         
+        }
+        
+        $email_exists = DB::table('geeks')->where("email","=",$email)->exists();
         if($email_exists){
             $user = DB::table('geeks')
-            ->where('email','=',$request->gmail)
-            ->get();
-            //set session data
-            $request->session()->put('unid',$user[0]->uniq_id);
-            $request->session()->put('fname',$user[0]->first_name);
-            $request->session()->put('lname',$user[0]->last_name);
-            $request->session()->put('email',$user[0]->email);
-            $request->session()->put('logged_in',true);
-
+                    ->where('email','=',$email)->get();
+            $this->custom_login($user[0],$request);
             return redirect('home');
         }else{
-            $insert = DB::insert("insert into geeks (uniq_id,first_name,last_name,email,password) values(?,?,?,?,?)",[uniqid(),$request->first_name,$request->last_name,$request->gmail,""]);
-            if($insert){
-                return redirect('check');
+            $insert_id = DB::insert("insert into geeks (uniq_id,first_name,last_name,email,password) values(?,?,?,?,?)",[uniqid(),$first_name,$last_name,$email,hash('md5',$email)])->lastInsertId();
+            if(isset($insert_id)){
+                $user = DB::table('geeks')
+                    ->where('id','=',$insert_id)->get();
+                $this->custom_login($user[0],$request);
+                return redirect('home');
             }
         }
     }

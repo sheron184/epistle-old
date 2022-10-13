@@ -7,7 +7,7 @@
             </div>   
         </div> 
         @foreach($booklets as $book)
-            <x-booklet :book="$book" />  
+            <x-booklet :book="$book" :action="$action='view'" />  
         @endforeach 
     </div>
 </div>

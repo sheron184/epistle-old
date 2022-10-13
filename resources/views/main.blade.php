@@ -6,7 +6,6 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
-        <meta name="google-signin-client_id" content="447463456961-1101g31d1hhjcr5onkhimk82chkkffbg.apps.googleusercontent.com">
         <!-- FONTS -->
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet">
@@ -37,9 +36,28 @@
         <link rel="stylesheet" href="{{url('/css/welcomeContent.css')}}?{{uniqid()}}">
     </head>
     <body>
-        <div id="loader" class="h-100" style="position: fixed;background:#111;">loading</div>
         <div class="container-fluid">
-            <div class="row">
+            <div class="row position-relative">
+                @if($message = Session::get('error'))
+                <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
+                    <div class="alert alert-danger animate__animated animate__fadeInDown position-relative">
+                        <a class="close-alert position-absolute" style="top: 5px;right:5px;"><i class="fa-solid fa-xmark"></i></a>
+                        <div>                            
+                            <strong>{{$message}}</strong>
+                        </div>
+                    </div>
+                </div>
+                @endif
+                @if($message = Session::get('success'))
+                <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
+                    <div class="alert alert-success animate__animated animate__fadeInDown position-relative">
+                        <a class="close-alert position-absolute" style="top: 5px;right:5px;"><i class="fa-solid fa-xmark"></i></a>
+                        <div>                            
+                            <strong>{{$message}}</strong>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="col-12 pl-0 pr-0">
                     <div class="outer-wrapper position-relative">
                         <div class="welcome-container shadow h-100">
@@ -63,7 +81,7 @@
                                 <div class="slider-content pb-5 pr-5 pl-5 pt-3 hideme animate__animated userareaModule">
                                     <button class="closeme text-white position-absolute"><i class="fa-regular fa-circle-xmark"></i></button>
                                     <div class="regorlog-container">
-                                        <div id="regFormContainer">
+                                        <div id="regFormContainer" class="hide">
                                             <div class="pt-2 pb-3">
                                                 <h3 align="center" class="h-regorlog text-white">Sign Up</h3>
                                             </div>
@@ -96,7 +114,9 @@
                                                         <a href="#" class="gotologin">Login</a>
                                                     </div>
                                                     <div class="signup-api-btns mt-3 pt-3">
-                                                        <div class="g-signin2 d-flex justify-content-center" data-width="250" data-longtitle="true" data-text="signup_with" data-onsuccess="onSignIn" onclick="signInWithGoogle()"></div>                
+                                                        <div class="d-flex justify-content-center align-items-center">
+                                                            <a class="googlebtn" href="{{$google_url}}"><img src="{{url('/imgs/pngs/google.png')}}" alt=""> Sign up with google</a>
+                                                        </div>
                                                     </div>
                                                 </div>  
                                             </form>
@@ -109,7 +129,7 @@
                                                 <input type="hidden" name="password" value="">
                                             </form>
                                         </div>
-                                        <div id="loginFormContainer" class="w-60 p-4 bl hide animate__animated">
+                                        <div id="loginFormContainer" class="w-60 p-4 bl animate__animated">
                                             <div class="pb-3">
                                                 <h4 class="h-regorlog text-white" align="center">Sign In</h4>
                                             </div>
@@ -128,6 +148,11 @@
                                                     <input type="submit" value="Sign In" class="btn-reg">
                                                     <span class="ml-3 mr-3 font-bold">Or</span>
                                                     <button class="gotoreg">Sign Up</button>
+                                                </div>
+                                                <div class="signup-api-btns mt-3 pt-3">
+                                                    <div class="d-flex justify-content-center align-items-center">
+                                                        <a class="googlebtn" href="{{$google_url}}"><img src="{{url('/imgs/pngs/google.png')}}" alt=""> Login with google</a>
+                                                    </div>
                                                 </div>
                                                 <div class="d-flex justify-content-center pt-3"><a href="forgot-password">Forgot password..?</a></div>
                                                 </div>
@@ -209,9 +234,7 @@
                                         </ul>            
                                     </div>    
                                 </section>    
-                            </div>
-                            
-                            
+                            </div>   
                         </div>
                     </div>
                 </div>
@@ -287,6 +310,10 @@
                 $("#loginFormContainer").addClass("hide");
             });
         });
+        $(".close-alert").click(function(){
+            $(this).parent("div").parent("div").addClass("hide");
+        })
+        /*
         function onSignIn(googleUser) {
             var profile = googleUser.getBasicProfile();
             var name = profile.getName();
@@ -302,7 +329,7 @@
             console.log('Name: ' + profile.getName());
             console.log('Image URL: ' + profile.getImageUrl());
             console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            */
+            
         }
         function signInWithGoogle(){
             if($("#gid").val() != ""){
@@ -313,10 +340,10 @@
             }
             
         }
-        
+        */
         $(".loginModule").click(function(){
-            var auth2 = gapi.auth2.getAuthInstance();
-            auth2.signOut();
+            //var auth2 = gapi.auth2.getAuthInstance();
+            //auth2.signOut();
             $(".userareaModule").removeClass("hideme").addClass("animate__slideInRight").removeClass("animate__slideOutLeft");
             $(".splide_slider").addClass("hideme").addClass("animate__slideOutLeft").removeClass("animate__slideInRight");
         })

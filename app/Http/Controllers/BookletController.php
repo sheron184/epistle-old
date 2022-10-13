@@ -23,15 +23,18 @@ class BookletController extends Controller{
             return redirect('home');
         }
     }
-    public function view($id){
+    public function editview($id){
         $booklet = DB::select('select * from booklets where uniq_id=?', [$id]);
-        //var_dump($booklet);die();
-        return view('user/booklet_view', ['booklet' => $booklet[0]]);
+        return view('booklet/editbook', ['booklet' => $booklet[0]]);
+    }
+    public function bookview($id){
+        $booklet = DB::select('select * from booklets where uniq_id=?', [$id]);
+        return view('booklet/viewbook', ['booklet' => $booklet[0]]);
     }
     public function pdf(Request $req){
         $dompdf = new Dompdf();
         $dompdf->loadHtml($req->html);
-        $dompdf->setPaper('A4', 'landscape');
+        $dompdf->setPaper('A4', 'portrait');
         $dompdf->render();
         $dompdf->stream();
     }
@@ -43,4 +46,5 @@ class BookletController extends Controller{
             //var_dump($req->all());
         echo $saved;
     }
+   
 }

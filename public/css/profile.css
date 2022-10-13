@@ -1,0 +1,71 @@
+*{
+    font-family: Ubuntu;
+}
+.f-20{
+    font-size: 20px;
+}
+.border-radius-2{
+    border-radius: 10px;
+}
+.userinfo p{
+    padding: 5px 18px;
+    width: fit-content;
+    margin: auto;
+    border-radius: 30px;
+}
+.pp{
+    width: 75px;
+    height: 75px;
+}
+.booklet{
+    height: 270px;
+    font-family: Manrope;
+    border-radius: 8px;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    transition: box-shadow 0.2s ease-in-out;
+  }
+  .booklet:hover{
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+  }
+  .book-view-btn{
+    bottom: 0px;
+    right: 0px;
+    background-color: #3559c7;
+    border: none;
+    color: #fff;
+    padding: 4px 20px;
+    border-bottom-right-radius: 8px;
+  }
+  .book-view-btn:hover{
+    color:whitesmoke;
+    background-color: darkblue;
+    text-decoration: none !important;
+  }
+
+  .devider-header{
+    width: fit-content;
+    background-image: linear-gradient(to right, #256c28,#3f9643, #cddc39);
+    color: #fff;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    padding: 10px 75px 10px 15px;
+    position: relative;
+  
+  }
+  .devider-header h5{
+    text-align: start;
+    font-family: Ubuntu;
+    font-weight: bold;
+    margin: 0px;
+  }
+  .triangle{
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    border-top: 22px solid transparent;
+    border-right: 37px solid #ffffff;
+    border-bottom: 22px solid transparent;
+  }
+  

@@ -3,6 +3,6 @@
         <div class="book-header">
             <h5 class="topic">{{"Topic"}}</h5>
         </div>
-        <a href="#" class="book-view-btn position-absolute">View</a>
+        <a href="viewproject" class="book-view-btn position-absolute">View</a>
     </div>
 </div> 

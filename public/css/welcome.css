@@ -368,7 +368,20 @@ form{
     background: #18161e;
     color: whitesmoke;
 }
-
+.googlebtn{
+    color: #111;
+    background: #fff;
+    padding: 5px 15px;
+    border-radius: 3px;
+}
+.googlebtn img{
+    width: 24px;
+    height: 100%;
+    margin-right: 5px;
+}
+.googlebtn:hover{
+    text-decoration: none;
+}
 
 
 

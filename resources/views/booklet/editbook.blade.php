@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$booklet->topic}}</title>
+    <title>{{$booklet->topic}}</title> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -27,6 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <!-- MYCSS -->
     <link rel="stylesheet" href="{{url('/css/booklet_view.css')}}?{{uniqid()}}">
+    <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
 </head>
 <body>
     <input type="hidden" id="bookletHtml" value="{{$booklet->content}}">
@@ -34,9 +35,10 @@
         <div class="row">
             <div class="col-12 bg-green text-white">
                 <div class="top-bar d-flex align-items-center">
-                    <h4 class="book-name mb-0">{{$booklet->topic}}</h4>
+                    <a href="/home" class="text-white f-20"><i class="fa-solid fa-circle-left"></i></a>
+                    <h4 class="book-name mb-0 ml-3">{{$booklet->topic}}</h4>
                     <div class="ml-3">
-                        <a href="#" bookid="{{$booklet->uniq_id}}" id="savebook">save</a>
+                        <button class="button-70" bookid="{{$booklet->uniq_id}}" id="savebook">save</button>
                     </div>
                 </div>
             </div>
