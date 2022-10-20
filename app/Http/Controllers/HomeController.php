@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller{
-    public function index(Request $req){
-        
+    public function explorer(Request $req){
+        return view('user/explorer');
     }
 }

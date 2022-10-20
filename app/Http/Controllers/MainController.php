@@ -20,9 +20,13 @@ class MainController extends Controller{
         $client->setRedirectUri($redirectUri);
         $client->addScope("email");
         $client->addScope("profile");
-
         //google login url
-        $loginUrl = $client->createAuthUrl();
+        try {
+            $loginUrl = $client->createAuthUrl();
+        } catch (\Throwable $th) {
+            echo $th;
+        }
+        
 
         return view('main',["google_url" => $loginUrl]);
     }
@@ -77,7 +81,8 @@ class MainController extends Controller{
         //var_dump($req->session()->get("logged_in"));die();
         if($req->session()->get("logged_in")){
             $booklets = DB::select("select * from booklets");
-            return view('user/home',['booklets'=>$booklets]);
+            $subjects = DB::select("select * from subjects");
+            return view('user/home',['booklets'=>$booklets,'subjects' => $subjects]);
         }else{
             return redirect('check');
         }
@@ -87,7 +92,7 @@ class MainController extends Controller{
     }
     public function sendResetLink(Request $req){
         $tokenBuild = ''.$req->email.''.uniqid().'';
-        $GLOBALS['email'] = $req->email;
+        $GLOBALS['email'] = $req->email; 
         $token = md5($tokenBuild); 
         $email_exists = DB::table('geeks')->where('email','=',$req->email)->exists();
         //var_dump($email_exists);die();

@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BookletController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\HomeController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -41,6 +42,7 @@ Route::get('token/{token}', [
 Route::post('pswdreset', [MainController::class, 'reset_pswd']);
 Route::get('gauth', [MainController::class, 'gauth']);
 Route::get('profile', [MainController::class, 'profile']);
+Route::get('explorer',[HomeController::class,'explorer']);
 
 //Booklet
 Route::post('add_booklet', [BookletController::class, 'index']);

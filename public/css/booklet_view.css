@@ -69,7 +69,16 @@
   border: 1px solid #ccc;
  }
 
-
+#important{
+  background-color: crimson;
+  color: #fff;
+  border: 2px solid gold;
+  width: 100px;
+  height: 100px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top:10px;
+}
 
 
 
@@ -114,4 +123,40 @@ iframe{
 }
 .share:hover{
   color: darkblue;
+}
+body{
+  position: relative;
+}
+.roadmap-sidebar{
+  display: flex;
+  width: 300px;
+  height: 100% !important;
+  background: rgb(37, 37, 37);
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 99;
+  overflow-y: scroll;
+}
+.list-group-item{
+  font-family: Ubuntu;
+}
+.list-group-item:hover{
+  background-color: aliceblue !important;
+  color: #111 !important;
+  cursor:default;
+}
+.hide{
+  display: none;
+}
+.closeme{
+  top: 5px;
+  right: 5px;
+}
+.bar-btn{
+  background-color: #111 !important;
+  background-image: none;
+}
+.f-20{
+  font-size: 30px;
 }

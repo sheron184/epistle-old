@@ -46,6 +46,12 @@ $("#rectangle").click(function(){
   var node = `<div style='width:100px;height:100px;border:1px solid;' class='component textnode dropped'></div>`;
   $(node).appendTo(dropbox);
 })
+$("#important").click(function(){
+  var node = `<div style='width:100px;height:100px;background-color: crimson;
+  color: #fff;
+  border: 2px solid gold;' class='component textnode dropped'></div>`;
+  $(node).appendTo(dropbox);
+})
 $(".dropped").click(function(){
   position = {x:0,y:0}
 })

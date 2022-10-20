@@ -1,0 +1,33 @@
+*{
+    font-family: Manrope;
+}
+.h-100vh{
+    height: 100vh;
+}
+.font-bold{
+    font-weight: bold;
+}
+.search-input{
+    width: 100%;
+    border: 2px solid #03a9f4;
+    background: #76d4ff30;
+    padding: 18px 20px;
+    border-radius: 30px;
+}
+.hashtag{
+    font-family: Kalam;
+    font-size: 20px;
+}
+.hash{
+    width: fit-content;
+}
+.block{
+    display: flex;
+    flex-flow: row wrap;
+}
+.rectangle{
+    font-family: Ubuntu;
+}
+.ReemKufiInk{
+    font-family: Reem Kufi Ink;
+}

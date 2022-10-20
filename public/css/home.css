@@ -1,5 +1,6 @@
 .logo-box h3 a{
-  font-family: Reem Kufi Ink;
+  font-family: Luckiest Guy;
+  font-size: 40px;
 }
 .profile-btn{
     background: #111;
@@ -14,14 +15,16 @@
   height: 100vh;
   width: 100%;
   background-color: rgba(17, 17, 17, 0.374);
-  position: absolute;
+  position: fixed;
   top: 0px;
   z-index: 99;
 }
 .hideme{
   display: none;
 }
-
+a:hover{
+  text-decoration: none !important;
+}
 .module{
   width: 50%;
   padding: 30px;
@@ -80,8 +83,27 @@
   box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
   transition: box-shadow 0.2s ease-in-out;
 }
+.team{
+  height: 150px;
+  font-family: Manrope;
+  border-radius: 8px;
+  box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+  transition: box-shadow 0.2s ease-in-out;
+}
 .booklet:hover{
   box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.team:hover{
+  box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+.team-view-btn{
+  bottom: 0px;
+  right: 0px;
+  background-color: #c735a0;
+  border: none;
+  color: #fff;
+  padding: 4px 20px;
+  border-bottom-right-radius: 8px;
 }
 .book-view-btn{
   bottom: 0px;

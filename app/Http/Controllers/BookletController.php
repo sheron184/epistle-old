@@ -25,7 +25,8 @@ class BookletController extends Controller{
     }
     public function editview($id){
         $booklet = DB::select('select * from booklets where uniq_id=?', [$id]);
-        return view('booklet/editbook', ['booklet' => $booklet[0]]);
+        $roadmap = DB::select('select roadmap from subjects where uniq_id=?',[$booklet[0]->language]);
+        return view('booklet/editbook', ['booklet' => $booklet[0],'roadmap'=>$roadmap[0]]);
     }
     public function bookview($id){
         $booklet = DB::select('select * from booklets where uniq_id=?', [$id]);

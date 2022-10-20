@@ -14,7 +14,8 @@
         <link href="https://fonts.googleapis.com/css2?family=Londrina+Shadow&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Rubik+Dirt&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Dangrek&display=swap" rel="stylesheet">
-        
+        <link href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
         <!-- JQUERY -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -33,6 +34,7 @@
         <link rel="stylesheet" href="{{url('/splide/dist/css/splide.min.css')}}">
         <!-- MYCSS -->
         <link rel="stylesheet" href="{{url('/css/welcome.css')}}?{{uniqid()}}">
+        <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
         <link rel="stylesheet" href="{{url('/css/welcomeContent.css')}}?{{uniqid()}}">
     </head>
     <body>
@@ -67,7 +69,7 @@
                                         <h2 class="epistle">EPISTLE</h2>
                                     </div>
                                     <div class="pr-4">
-                                        <h5 class="des-h h5">Let's learn harder<br> but in a smart way!</h5>
+                                        <h5 class="des-h h5">Let's learn <br>Harder but,<br> In a smart way!</h5>
                                     </div>
                                     <div class="pr-4"><p class="des-h p">(Strictly for developers)</p></div>
                                     <div class="letsgo d-flex pr-4 pb-3">
@@ -75,7 +77,6 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="slider-side d-flex justify-content-end">
                                 @if(!session("logged_in"))
                                 <div class="slider-content pb-5 pr-5 pl-5 pt-3 hideme animate__animated userareaModule">
@@ -273,6 +274,7 @@
             maxDistance: 22.00,
             spacing: 18.00
         });
+        /*
         function write(str){
             i=0;
             setInterval(() => {
@@ -287,9 +289,19 @@
                 $(ele).addClass('animate__backInDown');
             }, (i+1)*600);      
         });
+        */
         $(document).ready(function(){
+            var pathname = window.location.href;
+            var params = pathname.split("/");
+            
+            function openpanel(){
+                $(".userareaModule").removeClass("hideme").addClass("animate__slideInRight").removeClass("animate__slideOutLeft");
+                $(".splide_slider").addClass("hideme").addClass("animate__slideOutLeft").removeClass("animate__slideInRight");
+            }
+            if(params[3] == "#panel") {
+                openpanel();
+            } 
             $(".gotologin").click(function (e) { 
-                e.preventDefault();
                 $("#regFormContainer").addClass("animate__fadeOutDown");
                 $("#regFormContainer").addClass("hide");
                 $("#regFormContainer").removeClass("animate__fadeInUp");
@@ -344,8 +356,7 @@
         $(".loginModule").click(function(){
             //var auth2 = gapi.auth2.getAuthInstance();
             //auth2.signOut();
-            $(".userareaModule").removeClass("hideme").addClass("animate__slideInRight").removeClass("animate__slideOutLeft");
-            $(".splide_slider").addClass("hideme").addClass("animate__slideOutLeft").removeClass("animate__slideInRight");
+            openpanel();
         })
         $(".closeme").click(function(){
             $(".userareaModule").addClass("hideme").removeClass("animate__slideInRight").addClass("animate__slideOutLeft");

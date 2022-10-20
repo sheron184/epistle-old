@@ -1,3 +1,7 @@
+@php 
+$roadMap = json_decode($roadmap->roadmap);
+//var_dump($roadMap);die();
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,11 +30,23 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
     <!-- MYCSS -->
-    <link rel="stylesheet" href="{{url('/css/booklet_view.css')}}?{{uniqid()}}">
     <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
+    <link rel="stylesheet" href="{{url('/css/booklet_view.css')}}?{{uniqid()}}">
 </head>
 <body>
     <input type="hidden" id="bookletHtml" value="{{$booklet->content}}">
+    <div class="roadmap-sidebar animate__animated hide" id="roadmapBar">
+        <div class="roadmap position-relative h-100 w-100">
+            <button class="position-absolute closeme btn" onclick="toggleBar()"><a class="f-20 text-white"><i class="fa-regular fa-circle-xmark"></i></a></button>
+            <div class="p-3 mt-4">
+                <ul class="list-group">
+                    @foreach($roadMap as $step)
+                        <li class="list-group-item mt-2 pt-1 pb-1 bg-transparent text-white">{{$step}}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-12 bg-green text-white">
@@ -38,7 +54,10 @@
                     <a href="/home" class="text-white f-20"><i class="fa-solid fa-circle-left"></i></a>
                     <h4 class="book-name mb-0 ml-3">{{$booklet->topic}}</h4>
                     <div class="ml-3">
-                        <button class="button-70" bookid="{{$booklet->uniq_id}}" id="savebook">save</button>
+                        <button class="button-70" bookid="{{$booklet->uniq_id}}" id="savebook">Save</button>
+                    </div>
+                    <div class="d-flex justify-content-end flex-grow-1">
+                        <button class="button-70 bar-btn" id="roadmapSidebar" onclick="toggleBar()"><i class="fa-solid fa-list-ul mr-2"></i> Roadmap</button>
                     </div>
                 </div>
             </div>
@@ -61,7 +80,6 @@
                         @csrf
                         <input id="html_content" type="hidden" name="html" class="form-control">
                         <input type="submit" value="IMG" class="btn btn-sm btn-dark mr-3">
-                        <input type="submit" value="DOCX" class="btn btn-sm btn-info mr-3">
                         <input type="submit" value="PDF" class="btn btn-sm btn-danger">
                       </form>
                 </div>
@@ -72,4 +90,11 @@
 </body>
 <script src="{{url('/js/interact.js')}}?{{uniqid()}}"></script>
 <script src="{{url('/js/booklet.js')}}?{{uniqid()}}"></script>
+<script>
+    function toggleBar(){
+        let sideBar = document.getElementById("roadmapBar");
+        sideBar.classList.toggle("hide");
+        sideBar.classList.toggle("animate__fadeInRight");
+    }
+</script>
 </html>

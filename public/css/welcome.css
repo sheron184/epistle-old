@@ -9,7 +9,7 @@
     border-radius: 30px;
 }
 .content-side{
-    width: 37%;
+    width: 50%;
 }
 .content-side{
     display: flex;
@@ -19,13 +19,13 @@
     background-color: transparent;
 }
 .slider-side{
-    width: 63%;
+    width: 50%;
     height: 100%;
     z-index: 99;
     background-color: transparent;
 }
 .slider-content{
-    width: 67%;
+    width: 80%;
     background-color: #111111b8;
 }
 .content-side div{
@@ -33,18 +33,19 @@
 }
 .epistle{
     -webkit-text-fill-color: transparent;
-    background: linear-gradient(67.18deg, #ff397d 20.68%, #00bcd4 50.61%, #00bcd4 42.62%, #ffc107 64.59%, #cddc39 60.06%, rgb(233 175 97) 67.61%, rgb(255, 92, 0) 86.82%);
+    background: linear-gradient(64.18deg, #ff397d 9.68%, #00bcd4 27.61%, #00bcd4 27.62%, #ffc107 38.59%, #cddc39 40.06%, rgb(231 175 97) 43.61%, rgb(255, 92, 0) 59.82%);
     font-family: Londrina Shadow;
     background-clip:content-box;
     -webkit-background-clip: text;
-    font-size: 120px;
-}
-.des-h{
-    font-family:Ubuntu ;
+    font-size: 100px;
 }
 .h5{
-    font-size:35px;
-    color: #6c757d;
+    font-family:Black Han Sans;
+    font-size: 4rem;
+    color: #ffffff;
+}
+.p{
+    font-family: Karla;
 }
 .header{
     color: #ffc107;
