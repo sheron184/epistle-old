@@ -274,22 +274,6 @@
             maxDistance: 22.00,
             spacing: 18.00
         });
-        /*
-        function write(str){
-            i=0;
-            setInterval(() => {
-                $(".header").append(str[i]);
-                i++;
-            }, 130);
-        }
-        write("What do you get at epistle..?");
-        $(".widget").each(function(i,ele){
-            setTimeout(() => {
-                $(ele).removeClass("hide");
-                $(ele).addClass('animate__backInDown');
-            }, (i+1)*600);      
-        });
-        */
         $(document).ready(function(){
             var pathname = window.location.href;
             var params = pathname.split("/");
@@ -325,37 +309,7 @@
         $(".close-alert").click(function(){
             $(this).parent("div").parent("div").addClass("hide");
         })
-        /*
-        function onSignIn(googleUser) {
-            var profile = googleUser.getBasicProfile();
-            var name = profile.getName();
-            var names = name.split(" ");
-            $("#gid").val(profile.getId());
-            $("#gfname").val(names[0]);
-            $("#glname").val(names[1]);
-            $("#gmail").val(profile.getEmail());
-
-            //$("#signInWithGoogle").submit();
-            /*
-            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-            console.log('Name: ' + profile.getName());
-            console.log('Image URL: ' + profile.getImageUrl());
-            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-            
-        }
-        function signInWithGoogle(){
-            if($("#gid").val() != ""){
-                $("#signInWithGoogle").submit();
-            }else{
-                onSignIn();
-                signInWithGoogle();
-            }
-            
-        }
-        */
         $(".loginModule").click(function(){
-            //var auth2 = gapi.auth2.getAuthInstance();
-            //auth2.signOut();
             openpanel();
         })
         $(".closeme").click(function(){

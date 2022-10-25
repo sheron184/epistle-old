@@ -1,7 +1,4 @@
-@php 
-$roadMap = json_decode($roadmap->roadmap);
-//var_dump($roadMap);die();
-@endphp
+@php $roadMap = json_decode($roadmap->roadmap); @endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,9 +26,13 @@ $roadMap = json_decode($roadmap->roadmap);
 
     <!-- <script src="https://cdn.jsdelivr.net/npm/@shopify/draggable@1.0.0-beta.11/lib/draggable.bundle.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+    <link rel="stylesheet" href="{{url('/richtexteditor/rte_theme_default.css')}}" />  
+    <script type="text/javascript" src="{{url('/richtexteditor/rte.js')}}"></script>  
+    <script type="text/javascript" src='{{url('/richtexteditor/plugins/all_plugins.js')}}'></script>  
     <!-- MYCSS -->
     <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
     <link rel="stylesheet" href="{{url('/css/booklet_view.css')}}?{{uniqid()}}">
+    <link rel="stylesheet" href="{{url('/css/editbook.css')}}?{{uniqid()}}">
 </head>
 <body>
     <input type="hidden" id="bookletHtml" value="{{$booklet->content}}">
@@ -61,7 +62,7 @@ $roadMap = json_decode($roadmap->roadmap);
                     </div>
                 </div>
             </div>
-            <div class="col-xl-2 col-lg-4 col-md-4 col-sm-12 col-12 pl-0 border pt-2">
+            <div class="col-xl-2 col-lg-3 col-md-3 col-sm-12 col-12 pl-0 border pt-2">
                 <div class="elements-bar p-2 h-100vh">
                     <div class="bar-heading mb-3">
                         <h4 align="center">Elements</h4>
@@ -69,16 +70,26 @@ $roadMap = json_decode($roadmap->roadmap);
                     <x-elements />
                 </div>
             </div>
-            <div class="col-xl-10 col-lg-8 col-md-8 col-sm-12 col-12 pt-3">
+            <div class="col-xl-9 col-lg-8 col-md-8 col-sm-12 col-12 pt-3">
                 <div id="dropboxContainer" class="canvas-wrapper p-2 d-flex justify-content-center">
                     <div id="dropbox" class="canvas"></div>
+                </div>
+            </div>
+            <div class="col-xl-1 col-lg-1 col-md-1 col-sm-12 col-12 border-left props-main-wrapper">
+                <div class="props-wrapper">
+                    <div class="pt-3 fm-ubuntu">
+                        <h6>Properties</h6>
+                    </div>
+                    <div class="props p-2">
+                        <button onclick="delComp()" class="btn btn-sm border shadow-sm bg-del disabled" id="delcomp" disabled>Delete</button>
+                    </div>
                 </div>
             </div>
             <div class="col-12">
                 <div class="pt-3 pb-3">
                     <form action="/pdf" method="post" class="p-2 d-flex justify-content-end">
                         @csrf
-                        <input id="html_content" type="hidden" name="html" class="form-control">
+                        <input id="html_content" type="text" name="html" class="form-control">
                         <input type="submit" value="IMG" class="btn btn-sm btn-dark mr-3">
                         <input type="submit" value="PDF" class="btn btn-sm btn-danger">
                       </form>

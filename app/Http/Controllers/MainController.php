@@ -2,6 +2,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Session;
+use App\Models\User;
+use Hash;
 use Illuminate\Support\Facades\Mail;
 use Google_Client; 
 use Google_Service_Oauth2;
