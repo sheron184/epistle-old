@@ -30,6 +30,32 @@
         <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
     </head>
     <body>
+        <div class="container">
+            <div class="row">
+                <div class="col-8">
+                    @if($message = Session::get('error'))
+                    <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
+                        <div class="alert alert-danger animate__animated animate__fadeInDown position-relative">
+                            <a class="close-alert position-absolute" style="top: 5px;right:5px;"><i class="fa-solid fa-xmark"></i></a>
+                            <div>                            
+                                <strong>{{$message}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                    @if($message = Session::get('success'))
+                    <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
+                        <div class="alert alert-success animate__animated animate__fadeInDown position-relative">
+                            <a class="close-alert position-absolute" style="top: 5px;right:5px;"><i class="fa-solid fa-xmark"></i></a>
+                            <div>                            
+                                <strong>{{$message}}</strong>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-12 pl-0">

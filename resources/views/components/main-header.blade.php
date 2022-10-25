@@ -30,21 +30,22 @@
     <div id="projectModule" class="hideme animate__animated">
         <div class="module mt-4 shadow border position-relative">
             <a class="closeme text-dark f-20"><i class="fa-solid fa-rectangle-xmark"></i></a>
-            <form action="add_module" method="post">
+            <form action="addproject" method="post">
+                @csrf
                 <div class="form-group">
                     <h5><b>Create Project</b></h5>
                 </div>
                 <div class="form-group">
                     <label for="proj_name">Project topic</label>
-                    <input type="text" class="form-control" name="proj_name">
-                </div>
-                <div class="form-group">
-                    <label for="proj_name">Description</label>
-                    <textarea name="des" id="" cols="30" rows="10" class="form-control"></textarea>
+                    <input type="text" class="form-control" name="topic">
                 </div>
                 <div class="form-group">
                     <label for="proj_name">Technologies</label>
-                    <input type="text" class="form-control" name="proj_name">
+                    <textarea name="technologies" id="" cols="30" rows="3" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="proj_name">Description</label>
+                    <textarea name="description" id="" cols="30" rows="7" class="form-control"></textarea>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="button-47" value="Create">

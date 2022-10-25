@@ -54,6 +54,7 @@ Route::get('editview/{id}',[BookletController::class,'editview'])->middleware('b
 //Project
 Route::get('editproject',[ProjectController::class,'index']);
 Route::get('viewproject',[ProjectController::class,'viewproject']);
+Route::post('addproject',[ProjectController::class,'create']);
 
 //Team
 Route::get('teamview',[TeamController::class,'teamview']);
