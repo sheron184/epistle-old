@@ -25,4 +25,9 @@ class ProjectController extends Controller{
           return redirect('home')->withError("Error occured");
      }
    }
+   public function editproject($id){
+     $project = Project::where('uniq_id',$id)->first();
+     //var_dump($project[0]);die();
+     return view('project/editproject',["project"=>$project]);
+   }
 }

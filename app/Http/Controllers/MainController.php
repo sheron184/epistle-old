@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Session;
 use App\Models\User;
+use App\Models\Project;
 use Hash;
 use Illuminate\Support\Facades\Mail;
 use Google_Client; 
@@ -52,7 +53,8 @@ class MainController extends Controller{
     public function profile(Request $req){
         $user = DB::table('geeks')->where("uniq_id","=",$req->session()->get('unid'))->get();
         $user_books = DB::table('booklets')->where("user_id","=",$req->session()->get('unid'))->get();
-        return view('user/profile',["user" => $user[0],"booklets" => $user_books]);
+        $projects = Project::where('user_id',$req->session()->get('unid'))->get();
+        return view('user/profile',["user" => $user[0],"booklets" => $user_books,"projects"=>$projects]);
     }
     public function signup(Request $request){
         $password = hash('md5',$request->password);
@@ -86,7 +88,7 @@ class MainController extends Controller{
         if($req->session()->get("logged_in")){
             $booklets = DB::select("select * from booklets");
             $subjects = DB::select("select * from subjects");
-            return view('user/home',['booklets'=>$booklets,'subjects' => $subjects]);
+            return view('user/home',['booklets'=>$booklets,'subjects' => $subjects,'projects'=>Project::all()]);
         }else{
             return redirect('check');
         }
@@ -108,7 +110,8 @@ class MainController extends Controller{
                 $message->from("sheronjude4@gmail.com", "sheron jude");
                 $message->to($GLOBALS['email']);
             });
-            echo "<h4>Please check your mail!</h4>";
+            echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+            <div class="p-3"><div style="width:fit-content;" class="alert alert-success mt-4"><h4>Please check your email!</h4></div></div>';
         }else{
             return redirect('forgot-password');
         }
@@ -119,14 +122,15 @@ class MainController extends Controller{
             $tokenDetails = DB::select('select * from password_access_tokens where token=?',[$token]);
             return view('user/password_reset',['token'=>$token,'email'=>$tokenDetails[0]->email]);
         }else{
-            echo "<h4>Invalid request</h4>";
+            echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+            <div class="p-3 d-flex justify-content-center"><div style="width:fit-content;" class="alert alert-danger mt-4"><h4>Sorry! Invalid request 🤨</h4></div></div>';
         }
     }
     public function reset_pswd(Request $req){
         $password = hash('md5',$req->new_password);
         DB::update('update geeks set password=? where email=?',[$password,$req->email]);
         DB::delete('delete from password_access_tokens where email=?',[$req->email]);
-        return redirect('userarea');
+        return redirect('/');
     }
     public function logout(Request $req){
         $req->session()->flush();

@@ -48,10 +48,9 @@
                                 </div>
                             </div>
                         </div>
-                        <x-project />
-                        <x-project />
-                        <x-project />
-                        <x-project />
+                        @foreach($projects as $project)
+                            <x-project :project="$project" :action="$action='edit'" />  
+                        @endforeach 
                         <div class="col-12">
                             <div class="pt-4 pb-3">
                                 <div class="devider-header">

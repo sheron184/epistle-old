@@ -1,12 +1,11 @@
 @extends('project/project')
-
 @section('header')
     <div class="container-fluid shadow-sm">
         <div class="row">
             <div class="col-12">
-                <div class="p-2 d-flex">
-                    <a href="/home" class="f-20"><i class="fa-solid fa-circle-left"></i></a>
-                    <h4 class="ml-3">{{"Project Topic"}}</h4>
+                <div class="p-2 d-flex align-items-center">
+                    <a href="/profile" class="f-20"><i class="fa-solid fa-circle-left"></i></a>
+                    <h4 class="ml-3 mb-0">{{$project->topic}}</h4>
                 </div>
             </div>
         </div>
@@ -20,7 +19,7 @@
                 <div class="bar-heading mb-3">
                     <h4 align="center">Elements</h4>
                 </div>
-                <x-elements />
+                <x-ProjectElements />
             </div>
         </div>
         <div class="col-xl-10 col-lg-8 col-md-8 col-sm-12 col-12 pt-3">

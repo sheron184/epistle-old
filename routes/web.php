@@ -27,13 +27,12 @@ Route::get('/', [MainController::class, 'index']);
 Route::get('check', [MainController::class, 'check_credentails']);
 Route::get('home', [MainController::class, 'home']);
 Route::get('logout', [MainController::class, 'logout']);
-Route::get('userarea', [MainController::class, 'regorlogin']);
 Route::post('signup', [MainController::class, 'signup']);
 Route::post('login', [MainController::class, 'login']);
 Route::get('forgot-password', [
     MainController::class,
     'getResetEmail',
-])->middleware('guest');
+]);
 Route::post('reset_link', [MainController::class, 'sendResetLink']);
 Route::get('token/{token}', [
     MainController::class,
@@ -52,8 +51,8 @@ Route::post('savebook',[BookletController::class,'savebook']);
 Route::get('editview/{id}',[BookletController::class,'editview'])->middleware('bookowner');
 
 //Project
-Route::get('editproject',[ProjectController::class,'index']);
-Route::get('viewproject',[ProjectController::class,'viewproject']);
+Route::get('editp/{id}',[ProjectController::class,'editproject']);
+Route::get('viewp',[ProjectController::class,'viewproject']);
 Route::post('addproject',[ProjectController::class,'create']);
 
 //Team

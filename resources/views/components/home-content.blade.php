@@ -19,10 +19,9 @@
                 <div class="triangle"></div>    
             </div>   
         </div> 
-        <x-project />  
-        <x-project /> 
-        <x-project /> 
-        <x-project /> 
+        @foreach($projects as $project)
+            <x-project :project="$project" :action="$action='view'" />  
+        @endforeach 
     </div>
 </div>
 <div class="container mt-5 pt-3 mb-4">

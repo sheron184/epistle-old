@@ -25,6 +25,7 @@
 
     <!-- MYCSS -->
     <link rel="stylesheet" href="{{url('/css/booklet_view.css')}}?{{uniqid()}}">
+    <link rel="stylesheet" href="{{url('/css/edit_project.css')}}?{{uniqid()}}">
     <link rel="stylesheet" href="{{url('/css/btns.css')}}?{{uniqid()}}">
 </head>
 <body>

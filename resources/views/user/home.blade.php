@@ -63,7 +63,7 @@
                 </div>
             </div>
         </div>
-        <x-home-content :booklets="$booklets" />
+        <x-home-content :booklets="$booklets" :projects="$projects" />
         <x-footer />
     </body>
 </html>
