@@ -42,6 +42,8 @@ class MainController extends Controller{
         $request->session()->put('lname',$user->last_name);
         $request->session()->put('email',$user->email);
         $request->session()->put('logged_in',true);
+
+        DB::table('geeks')->where('uniq_id',$user->uniq_id)->update(array('logged_in'=>1));
     }
     public function check_credentails(Request $request){
         if($request->session()->get('logged_in')){
@@ -57,6 +59,12 @@ class MainController extends Controller{
         return view('user/profile',["user" => $user[0],"booklets" => $user_books,"projects"=>$projects]);
     }
     public function signup(Request $request){
+        $valid = $request->validate([
+            'first_name' => 'required|min:3',
+            'last_name' => 'required|min:3',
+            'email' => 'email:rfc,dns',
+            'password' => 'required|min:6'
+        ]);
         $password = hash('md5',$request->password);
         $insert = DB::insert("insert into geeks (uniq_id,first_name,last_name,email,password) values(?,?,?,?,?)",[uniqid(),$request->first_name,$request->last_name,$request->email,$password]);
         if($insert){
@@ -134,6 +142,7 @@ class MainController extends Controller{
     }
     public function logout(Request $req){
         $req->session()->flush();
+        DB::table('geeks')->where('uniq_id',$req->session()->get('unid'))->update(array('logged_in'=>0));
         return redirect('/');
     }
     public function gauth(Request $request){
@@ -172,10 +181,12 @@ class MainController extends Controller{
             $this->custom_login($user[0],$request);
             return redirect('home');
         }else{
-            $insert_id = DB::insert("insert into geeks (uniq_id,first_name,last_name,email,password) values(?,?,?,?,?)",[uniqid(),$first_name,$last_name,$email,hash('md5',$email)])->lastInsertId();
-            if(isset($insert_id)){
-                $user = DB::table('geeks')
-                    ->where('id','=',$insert_id)->get();
+            $insert = DB::insert("insert into geeks (uniq_id,first_name,last_name,email,password) values(?,?,?,?,?)",[uniqid(),$first_name,$last_name,$email,hash('md5',$email)]);
+            //var_dump($insert_id);die();
+            $last_insert_id = DB::getPdo()->lastInsertId();
+            if($last_insert_id != null){
+                $user = DB::table('geeks') 
+                    ->where('id','=',$last_insert_id)->get();
                 $this->custom_login($user[0],$request);
                 return redirect('home');
             }

@@ -1,0 +1,20 @@
+#arrow{
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+#arrow-head{
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 20px solid rgb(176, 175, 175);
+    border-bottom: 10px solid transparent;
+}
+#arrow-body{
+    width: 30px;
+    height: 10px;
+    background-color: rgb(176, 175, 175);
+}

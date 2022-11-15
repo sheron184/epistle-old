@@ -5,12 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{$booklet->topic}}</title> 
+    <title>{{strtoupper($booklet->topic)}}</title> 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+    <link rel="icon" type="image/x-icon" href="{{url('imgs/pngs/fav1.png')}}">
     <!-- JQUERY -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -81,7 +82,15 @@
                         <h6>Properties</h6>
                     </div>
                     <div class="props p-2">
-                        <button onclick="delComp()" class="btn btn-sm border shadow-sm bg-del disabled" id="delcomp" disabled>Delete</button>
+                        <div class="">
+                            <div>
+                                <p align="center" for="">Bg color</p>
+                                <input id="component-bg-color" type="color" class="form-control" disabled>
+                            </div>
+                            <div class="d-flex justify-content-center mt-3">
+                                <button onclick="delComp()" class="btn btn-sm border shadow-sm bg-del button-15 disabled text-white" id="delcomp" disabled>Delete</button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -89,7 +98,7 @@
                 <div class="pt-3 pb-3">
                     <form action="/pdf" method="post" class="p-2 d-flex justify-content-end">
                         @csrf
-                        <input id="html_content" type="text" name="html" class="form-control">
+                        <input id="html_content" type="hidden" name="html" class="form-control">
                         <input type="submit" value="IMG" class="btn btn-sm btn-dark mr-3">
                         <input type="submit" value="PDF" class="btn btn-sm btn-danger">
                       </form>
@@ -99,13 +108,32 @@
         </div>
     </div>
 </body>
-<script src="{{url('/js/interact.js')}}?{{uniqid()}}"></script>
-<script src="{{url('/js/booklet.js')}}?{{uniqid()}}"></script>
+<script src="{{url('/js/interact.js')}}"></script>
+<script src="{{url('/js/zombie.js')}}?{{uniqid()}}"></script>
 <script>
     function toggleBar(){
         let sideBar = document.getElementById("roadmapBar");
         sideBar.classList.toggle("hide");
         sideBar.classList.toggle("animate__fadeInRight");
     }
+    //Save Booklet
+    saveBtn.addEventListener('click',(event)=>{
+        var sendhtml = $("#html_content").val();
+        var id = $(event.target).attr("bookid");
+        token = document.querySelector('meta[name="csrf-token"]').content;
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST","http://localhost:8000/savebook",true);
+        xhttp.setRequestHeader("X-CSRF-TOKEN", token); 
+        xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhttp.onload = ()=>{
+            if(xhttp.response){
+            alert("Saved successfully!");
+            }else{
+            alert("Error occured!");
+            }
+        }
+        xhttp.send(`id=${id}&html=${sendhtml}`);
+    })
+
 </script>
 </html>

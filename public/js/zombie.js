@@ -1,4 +1,4 @@
-//const { update } = require("lodash");
+//const { drop } = require("lodash");
 
 //variables
 position = { x: 0, y: 0 }
@@ -23,25 +23,6 @@ var html = $("#bookletHtml").val();
 $(html).appendTo("#dropbox");
 updateHtml();
 
-//Save booklet
-saveBtn.addEventListener('click',(event)=>{
-  var sendhtml = $("#html_content").val();
-  var id = $(event.target).attr("bookid");
-  token = document.querySelector('meta[name="csrf-token"]').content;
-  const xhttp = new XMLHttpRequest();
-  xhttp.open("POST","http://localhost:8000/savebook",true);
-  xhttp.setRequestHeader("X-CSRF-TOKEN", token); 
-  xhttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-  xhttp.onload = ()=>{
-    if(xhttp.response){
-      alert("Saved successfully!");
-    }else{
-      alert("Error occured!");
-    }
-  }
-  xhttp.send(`id=${id}&html=${sendhtml}`);
-})
-
 // ++++++++++++++++++++++++++++++++++++++++++++++++ ADD COMPONENTS ++++++++++++++++++++++++++++++++++++++++++++++++++++ //
 
 // CONTAINER
@@ -54,9 +35,9 @@ $("#rectangle").click(function(){
 //IMPORTANT NOTE
 $("#important").click(function(){
   var id = `${Math.floor(Math.random() * 9999) + Date.now()}`;
-  var node = `<div id='${id}' style='width:200px;height:50px;background-color: #ccf9e2;border-left: 3px solid rgb(6, 196, 6);
+  var node = `<div id='${id}' style='width:200px;height:50px;background-color: #fff;border-left: 5px solid #e91e63;
   color: green;border-radius:5px;padding:10px;box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-  ' class='component dropped' contenteditable="true"></div>`;
+  ' class='component dropped impnote' contenteditable="true"></div>`;
   $(node).appendTo(dropbox);
   updateHtml();
 })
@@ -72,7 +53,19 @@ $("#editor").click(function(){
   var id = `${Math.floor(Math.random() * 9999) + Date.now()}`;
   var editor_node = `<div id='editor${id}' class='txteditor component'></div>`;
   $(editor_node).appendTo(dropbox);
-  setUpEditor(id);
+  //setUpEditor(id);
+  updateHtml();
+})
+//ARROW
+$("#arrow").click(function(){
+  var id = `${Math.floor(Math.random() * 9999) + Date.now()}`;
+  var arrow_node = `<div id="arrow${id}" class="component" style="width:100%;height:50px;display: flex;align-items: center;position:relative;">
+  <div class="" style="width: 0;height: 0;border-top: 10px solid transparent;
+  border-right: 20px solid rgb(176, 175, 175);
+  border-bottom: 10px solid transparent;"></div><div class="arrow-body" style="width: 30px;
+  height: 10px;left:10px;position:absolute;
+  background-color: rgb(176, 175, 175);"></div></div>`;
+  $(arrow_node).appendTo(dropbox);
   updateHtml();
 })
 //************************************************** COMPONENTS ENDS ************************************************* */
@@ -109,10 +102,22 @@ $(document).on("click",".component",function(){
     if($(this).hasClass("selected-border")){
       $(this).removeClass("selected-border");
     }
+
   })
   $("#delcomp").prop("disabled",false).removeClass("disabled");
+  $("#component-bg-color").prop("disabled",false);
   $(this).addClass("selected-border");
   selected_component_id = $(this).attr("id");
+})
+$("#component-bg-color").on("change",function(){
+  $(`#${selected_component_id}`).css("background-color",$(this).val());
+})
+$("#rotateX").on("change",function(){
+  var deg = $(this).val();
+  if(selected_component_id != ""){
+    $(`#${selected_component_id}`).css("transform",`rotateX(${deg}deg)`);
+  }
+  updateHtml();
 })
 $(".dropped").click(function(){
   position = {x:0,y:0}
@@ -125,6 +130,8 @@ $(document).on("mouseover",".textnode",function(){
   updateHtml();
 })
 $("#dropbox").click(function(){
+  $("#delcomp").prop("disabled",true).addClass("disabled");
+  $("#component-bg-color").prop("disabled",true);
   removeAllSelections();
 })
 $(document).on("keyup",".textnode",function(){

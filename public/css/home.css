@@ -105,10 +105,12 @@ a:hover{
   padding: 4px 20px;
   border-bottom-right-radius: 8px;
 }
+.view{
+  background-color: rgb(13, 73, 194);
+}
 .book-view-btn{
   bottom: 0px;
   right: 0px;
-  background-color: #3559c7;
   border: none;
   color: #fff;
   padding: 4px 20px;

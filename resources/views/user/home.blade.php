@@ -1,13 +1,13 @@
 <html>
     <head>
-        <title>WELCOME TO EPISTLE</title>
+        <title>HOME | EPISTLE</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
-
-        <!-- FONTS -->
+        <link rel="icon" type="image/x-icon" href="{{url('imgs/pngs/fav1.png')}}">
+        <!-- FONTS -->  
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-12 pl-0">
-                    <x-main-header :subjects="$subjects" />
+                    <x-main-header :subjects="$subjects" :projects="$projects" />
                 </div>
             </div>
         </div>

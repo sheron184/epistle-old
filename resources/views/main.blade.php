@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <meta content='width=device-width, initial-scale=1, maximum-scale=1' name='viewport'/>
+        <link rel="icon" type="image/x-icon" href="{{url('imgs/pngs/fav1.png')}}">
         <!-- FONTS -->
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300&display=swap" rel="stylesheet">
@@ -40,10 +41,24 @@
     <body>
         <div class="container-fluid">
             <div class="row position-relative">
+                @if ($errors->any())
+                    <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
+                        <div class="alert alert-danger animate__animated animate__fadeInDown position-relative">
+                            <a class="close-alert position-absolute text-danger" style="top: 5px;right:10px;font-size:15px;"><i class="fa-solid fa-xmark"></i></a>
+                            <div>                            
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 @if($message = Session::get('error'))
                 <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
                     <div class="alert alert-danger animate__animated animate__fadeInDown position-relative">
-                        <a class="close-alert position-absolute" style="top: 5px;right:5px;"><i class="fa-solid fa-xmark"></i></a>
+                        <a class="close-alert position-absolute text-danger" style="top: 5px;right:5px;font-size:15px;"><i class="fa-solid fa-xmark"></i></a>
                         <div>                            
                             <strong>{{$message}}</strong>
                         </div>

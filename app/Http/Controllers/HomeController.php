@@ -9,4 +9,7 @@ class HomeController extends Controller{
     public function explorer(Request $req){
         return view('user/explorer');
     }
+    public function playground(Request $req){
+        return view('user/playground');
+    }
 }

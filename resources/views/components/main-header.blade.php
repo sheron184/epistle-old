@@ -7,7 +7,8 @@
             <button class="button-35 mr-3 prompt" target-module="teamModule"><i class="fa-solid fa-plus mr-2"></i> Team</button>
             <button class="button-35 mr-3 prompt" target-module="projectModule"><i class="fa-solid fa-plus mr-2"></i> Project</button>
             <button class="button-35 mr-3 prompt" target-module="bookletModule"><i class="fa-solid fa-plus mr-2"></i> Booklet</button>
-            <a href="explorer"><button class="mr-3 button-29"><i class="fa-solid fa-hashtag"></i> Explorer</button></a>
+            <a href="explorer"><button class="mr-1 button-29"><i class="fa-solid fa-hashtag"></i> Explorer</button></a>
+            <a href="playground"><button class="button-84"><h6 class="mb-0">CO<i class="fa-solid fa-code"></i>DE</h6></button></a>
             <a href="profile" class="button-71"><i class="fa-solid fa-user"></i></a>
         </div>
     </div>
@@ -98,7 +99,11 @@
                 </div>
                 <div class="form-group">
                     <label for="proj_name">Select project</label>
-                    <input type="text" class="form-control" name="proj_name">
+                    <select name="project_name" class="form-control">
+                        @foreach($projects as $project)
+                            <option value="{{$project->uniq_id}}">{{$project->topic}}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
                     <label for="proj_name">Description</label>

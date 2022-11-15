@@ -4,9 +4,9 @@
             <h5 class="topic">{{$book->topic}}</h5>
         </div>
         @if($action == "edit")
-            <a href="editview/{{$book->uniq_id}}" class="book-view-btn edit position-absolute">Edit</a>
+            <a href="editview/{{$book->uniq_id}}" class="book-view-btn btn-warning edit position-absolute">Edit</a>
         @else 
-            <a href="bookview/{{$book->uniq_id}}" class="book-view-btn position-absolute">View</a>
+            <a href="bookview/{{$book->uniq_id}}" class="book-view-btn view position-absolute">View</a>
         @endif
     </div>
 </div> 

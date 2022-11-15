@@ -42,6 +42,7 @@ Route::post('pswdreset', [MainController::class, 'reset_pswd']);
 Route::get('gauth', [MainController::class, 'gauth']);
 Route::get('profile', [MainController::class, 'profile']);
 Route::get('explorer',[HomeController::class,'explorer']);
+Route::get('playground',[HomeController::class,'playground']);
 
 //Booklet
 Route::post('add_booklet', [BookletController::class, 'index']);
@@ -52,9 +53,9 @@ Route::get('editview/{id}',[BookletController::class,'editview'])->middleware('b
 
 //Project
 Route::get('editp/{id}',[ProjectController::class,'editproject']);
-Route::get('viewp',[ProjectController::class,'viewproject']);
+Route::get('viewp/{id}',[ProjectController::class,'viewproject']);
 Route::post('addproject',[ProjectController::class,'create']);
-
+Route::post('saveproject',[ProjectController::class,'saveproject']);
 //Team
 Route::get('teamview',[TeamController::class,'teamview']);
 

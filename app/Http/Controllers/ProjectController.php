@@ -8,8 +8,9 @@ class ProjectController extends Controller{
    public function index(Request $req){
         return view('project/editproject');
    }
-   public function viewproject(Request $req){
-        return view('project/viewproject');
+   public function viewproject($id){
+        $project = DB::select('select * from projects where uniq_id=?', [$id]);
+        return view('project/viewproject', ['project' => $project[0]]);
    }
    public function create(Request $request){
      $project = new Project;
@@ -30,4 +31,12 @@ class ProjectController extends Controller{
      //var_dump($project[0]);die();
      return view('project/editproject',["project"=>$project]);
    }
+   public function saveproject(Request $req){
+     //$saved = DB::update('update booklets set content=? where uniq_id=?',[$req->html,$req->id]);
+     $saved = DB::table('projects')
+         ->where('uniq_id', $req->input('id'))
+         ->update(['content' => $req->input('html')]);
+         //var_dump($req->all());
+     echo $saved;
+ }
 }

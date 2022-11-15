@@ -1,7 +1,7 @@
 @extends('project/project')
 
 @section('header')
-<input type="hidden" value="{{"<div class='alert alert-danger'>No content to show yet!</div>"}}" id="projectContent">
+    <input type="hidden" value="{{$project->content}}" id="projectContent">
     <div class="container-fluid shadow-sm">
         <div class="row">
             <div class="col-12">
