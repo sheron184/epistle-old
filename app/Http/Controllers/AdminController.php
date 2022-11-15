@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class AdminController extends Controller{
     public function index(){
         $subjects = DB::select("select *from subjects");
-
+ 
         return view('admin.main',['subjects'=>$subjects]);
     }
     public function add_subject(Request $request){
