@@ -16,12 +16,22 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{{url('/css/profile.css')}}">
+        <link rel="stylesheet" href="{{url('/css/profile.css')}}?{{uniqid()}}">
         <link rel="stylesheet" href="{{url('/css/home.css')}}?{{uniqid()}}">
     </head>
     <body>
         <div class="container-fluid mb-4">
             <div class="row">
+                @if($message = Session::get('success'))
+                <div class="d-flex justify-content-center position-absolute" style="top:20px;z-index:99;width:100%;"> 
+                    <div class="alert alert-success animate__animated animate__fadeInDown position-relative">
+                        <a class="close-alert position-absolute" style="top: 5px;right:5px;"><i class="fa-solid fa-xmark"></i></a>
+                        <div>                            
+                            <strong>{{$message}}</strong>
+                        </div>
+                    </div>
+                </div>
+                @endif
                 <div class="col-12 pl-0 pr-0">
                     <x-ProfileHeader />
                 </div>

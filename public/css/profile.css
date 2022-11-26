@@ -74,3 +74,13 @@
 .edit:hover{
   background-color: #bf5407;
 }
+.con-git-btn{
+  background: #d80028;
+  color: #fff;
+}
+.con-git-btn:hover{
+  color:whitesmoke;
+}
+.border-radius-2{
+  border-radius: 10px;
+}

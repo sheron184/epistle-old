@@ -6,6 +6,7 @@ use App\Http\Controllers\BookletController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TeamController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GithubController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -63,6 +64,14 @@ Route::get('teamview',[TeamController::class,'teamview']);
 Route::get('admin', [AdminController::class, 'index']);
 Route::post('add_subject', [AdminController::class, 'add_subject']);
 Route::post('update_roadmap', [AdminController::class, 'update_roadmap']);
+
+//GitHub API
+Route::get('git',[GithubController::class,'index']);
+Route::get('gitlog', [GithubController::class,'redirectToProvider']);
+Route::get('gitdata', [GithubController::class,'handleProviderCallback']);
+
+
+
 
 //test
 Route::get('mail', function () {
