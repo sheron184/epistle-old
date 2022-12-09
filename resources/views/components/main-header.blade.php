@@ -1,5 +1,6 @@
 <div class="header-wrapper d-flex shadow-sm">
     <div class="logo-box p-2 d-flex align-items-center">
+        <button id="get_side_bar">|||</button>
         <h3 class="mb-0"><a href="/">EPISTLE</a></h3>
     </div>
     <div class="header-btns flex-grow-1 d-flex justify-content-end">
@@ -13,6 +14,7 @@
         </div>
     </div>
 </div>
+<!--
 <div class="search-bar-wrapper mt-2">
     <div class="pt-3">
         <div class="search-bar-row d-flex justify-content-center p-2">
@@ -23,7 +25,7 @@
         </div>
     </div>
 </div>
-
+-->
 
 <!-- =========== MODULES  ============ -->
 <div class="popup-dark-bg hideme">

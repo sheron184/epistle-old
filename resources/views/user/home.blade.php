@@ -63,7 +63,16 @@
                 </div>
             </div>
         </div>
-        <x-home-content :booklets="$booklets" :projects="$projects" />
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-4" id="homePageSideBar">
+                    <x-homesidebar />
+                </div>
+                <div class="col-xl-10 col-lg-10 col-md-8 col-sm-12 col-12">
+                    <x-home-content :booklets="$booklets" :projects="$projects" />
+                </div>
+            </div>
+        </div>
         <x-footer />
     </body>
 </html>
