@@ -1,4 +1,4 @@
-<div class="container mt-4">
+
     <div class="row">
         <div class="col-12 mb-4">
             <div class="devider-header">
@@ -10,8 +10,6 @@
             <x-booklet :book="$book" :action="$action='view'" />  
         @endforeach 
     </div>
-</div>
-<div class="container mt-5 pt-3">
     <div class="row">
         <div class="col-12 mb-4">
             <div class="devider-header">
@@ -23,8 +21,6 @@
             <x-project :project="$project" :action="$action='view'" />  
         @endforeach 
     </div>
-</div>
-<div class="container mt-5 pt-3 mb-4">
     <div class="row">
         <div class="col-12 mb-4">
             <div class="devider-header">
@@ -36,4 +32,3 @@
         <x-team /> 
         <x-team /> 
     </div>
-</div>

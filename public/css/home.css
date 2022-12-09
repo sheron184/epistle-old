@@ -147,3 +147,56 @@ a:hover{
   border-right: 37px solid #ffffff;
   border-bottom: 22px solid transparent;
 }
+.link-wrap{
+  display: flex;
+  justify-content: center;
+  padding: 12px 15px;
+  background-image: linear-gradient(45deg, #b7b7b7, #fbf7f7f0);
+  margin-bottom: 15px;
+  border-radius: 5px;
+}
+.link-wrap h5{
+  font-family: Ubuntu;
+}
+.sidebar-link{
+  font-size: 20px;
+  color: #111;
+}
+.explorer{
+  background-image: linear-gradient(45deg, #37963b, #4c63e0);
+}
+.explorer h5{
+  color: #fff;
+}
+.create{
+  position: relative;
+  background-color: #08850d;
+}
+
+.create:hover{
+  cursor: pointer;
+  background-color: #054908;
+}
+#homePageSideBar{
+  background-image: url('../imgs/bgs/rt.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.popular{
+  padding: 8px 10px;
+  background-color: #374b37;
+}
+.create-options{
+  position: absolute;
+  right: 5px;
+}
+@media only screen and (max-width:768px) {
+  #homePageSideBar{
+    display: none;
+  }
+}
+@media only screen and (min-width:768px) {
+  #get_side_bar{
+    display: none;
+  }
+}
